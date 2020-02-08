@@ -1,0 +1,31 @@
+server:
+  port: 9090
+spring:
+  application:
+    #,不要用下划线
+    name: web-consumer
+  mvc:
+    #访问静态资源
+    static-path-pattern: /static/**
+  thymeleaf:
+    #配置访问模版的路径前缀
+    prefix: classpath:/templates/
+    #配置访问模版的路径后缀
+    suffix: .html
+    #使用模版路径
+    check-template-location: true
+    #模版的编码为UTF-8
+    encoding: UTF-8
+    #模版的类型为text/templates.html
+    servlet:
+      content-type: text/html
+    #使用html5相关标签
+    mode: HTML5
+    #不使用模版缓存
+    cache: false
+eureka:
+  #客户端
+  client:
+    service-url:
+      #注册到注册中心的路径（功能模块可以同时注册到多个注册中心，至少要注册一个）
+      defaultZone: http://127.0.0.1:10010/eureka

@@ -1,0 +1,13 @@
+server:
+  #为此功能模块的访问的端口
+  port: 9092
+spring:
+  application:
+    #功能模块的名字，有字母或者数字或者下划线组成，不同的功能模块名字不能重复
+    name: hbuy_web_mongodb
+eureka:
+  #客户端
+  client:
+    service-url:
+      #注册到注册中心的路径（功能模块可以同时注册到多个注册中心，至少要注册一个）
+      defaultZone: http://127.0.0.1:10010/eureka

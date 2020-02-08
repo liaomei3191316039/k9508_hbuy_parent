@@ -1,0 +1,7 @@
+.layui-table td{
+    height: 60px;
+}
+.layui-table td img{
+    width:60px;
+    height: 60px;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="hbuy_admin" />
+        <module name="hbuy_eureka1" />
+        <module name="hbuy_eureka2" />
+        <module name="hbuy_web" />
+        <module name="hbuy_web_buycar" />
+        <module name="hbuy_web_customer" />
+        <module name="hbuy_web_model" />
+        <module name="hbuy_web_mongodb" />
+        <module name="hbuy_web_orders" />
+        <module name="hbuy_web_products" />
+        <module name="hbuy_web_provider1" />
+        <module name="hbuy_web_provider2" />
+        <module name="hbuy_web_register" />
+        <module name="hbuy_web_seckill" />
+        <module name="hbuy_web_service" />
+        <module name="hbuy_web_sso" />
+        <module name="hbuy_zuul" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: hbuy_zuul
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10010/eureka
+    registry-fetch-interval-seconds: 5
+#配置对外访问的网关
+zuul:
+  routes:
+    #配置功能模块的网关代理路径
+    #hbuy_admin为模块的名字  admin为访问的路径
+    hbuy_admin: /admin/**
+    hbuy_web: /web/**
+

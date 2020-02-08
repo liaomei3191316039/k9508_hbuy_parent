@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.java.admin.mapper.AdminUserAuthorityMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="AdminUserAuthorityEntity" id="adminUserAuthorityMap">
+        <result property="userid" column="userId"/>
+        <result property="menuid" column="menuId"/>
+    </resultMap>
+  
+  <!--要查询的字段-->  
+  <sql id="sel_AdminUserAuthorityColumns_List" > 
+  	   userId  ,        
+   menuId          
+  
+  </sql>
+  
+  <!--要添加的字段-->
+  <sql id="ins_AdminUserAuthorityColumns_List" >
+       #{userid},   #{menuid}   </sql> 
+  
+  <!--要修改的字段-->
+  <sql id="upd_AdminUserAuthorityColumns_List" >
+    <set>
+    <if test="t.menuid != null">menuId = #{t.menuid}</if>
+	</set>
+	where userId = #{t.userid}
+  </sql> 
+  
+  <!--定义删除的条件-->
+  <sql id="del_AdminUserAuthorityPramas_List">
+    <where>
+    <if test="t.userid != null">and userId = #{t.userid}</if>
+    <if test="t.menuid != null">and menuId = #{t.menuid}</if>
+	</where>
+  </sql> 
+  
+  <!--定义查询的条件-->
+  <sql id="sel_AdminUserAuthorityPramas_List">
+    <where>
+    <if test="t.userid != null">and userId = #{t.userid}</if>
+    <if test="t.menuid != null">and menuId = #{t.menuid}</if>
+	</where>
+  </sql>
+
+    <!--添加-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="userid">
+        insert into admin_user_authority values (<include refid="ins_AdminUserAuthorityColumns_List" />)
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        update admin_user_authority <include refid="upd_AdminUserAuthorityColumns_List" />
+    </update>
+
+    <!--根据条件删除-->
+    <delete id="delete">
+        delete from admin_user_authority <include refid="del_AdminUserAuthorityPramas_List" />
+    </delete>
+
+    <!--批量删除-->
+    <delete id="deleteBatch">
+        delete from admin_user_authority where userId in
+        <foreach item="userid" collection="array" open="(" separator="," close=")">
+            #{userid}
+        </foreach>
+    </delete>
+
+    <!--根据主键id查询单个对象-->
+	<select id="queryObjectById" resultMap="adminUserAuthorityMap">
+		select  <include refid="sel_AdminUserAuthorityColumns_List" />  from admin_user_authority where userId = #{id}
+	</select>
+	
+	<!--查询所有对象-->
+	<select id="queryAll" resultMap="adminUserAuthorityMap">
+		select  <include refid="sel_AdminUserAuthorityColumns_List" />  from admin_user_authority
+    </select>
+
+    <!--根据条件（无条件）查询多个对象-->
+	<select id="queryManyByPramas" resultMap="adminUserAuthorityMap">
+		select  <include refid="sel_AdminUserAuthorityColumns_List" />  from admin_user_authority <include refid="sel_AdminUserAuthorityPramas_List" />
+	</select>
+	
+	<!--根据条件（无条件）分页查询-->
+	<select id="queryListByPramas" resultMap="adminUserAuthorityMap">
+		select  <include refid="sel_AdminUserAuthorityColumns_List" />  from admin_user_authority <include refid="sel_AdminUserAuthorityPramas_List" /> order by userid desc
+	</select>
+
+    <!--根据条件查询单条数据-->
+    <select id="queryObjectByPramas" resultMap="adminUserAuthorityMap">
+        select  <include refid="sel_AdminUserAuthorityColumns_List" />  from admin_user_authority <include refid="sel_AdminUserAuthorityPramas_List" />
+    </select>
+	
+	<!--根据条件（无条件）查询数据条数-->
+ 	<select id="queryTotalByPramas" resultType="java.lang.Long">
+		select count(*) from admin_user_authority <include refid="sel_AdminUserAuthorityPramas_List" />
+	</select>
+	
+
+
+</mapper>

@@ -1,0 +1,69 @@
+server:
+  #为此功能模块的访问的端口
+  port: 8084
+spring:
+  application:
+    #功能模块的名字，有字母或者数字或者下划线组成，不同的功能模块名字不能重复
+    name: hbuy_web_register
+  mvc:
+    #静态资源的访问路径
+    static-path-pattern: /static/**
+  #thymeleaf模板框架配置
+  thymeleaf:
+    #配置访问模版的路径前缀
+    prefix: classpath:/templates/
+    #配置访问模版的路径后缀
+    suffix: .html
+    #使用模版路径
+    check-template-location: true
+    #模版的编码为UTF-8
+    encoding: UTF-8
+    #模版的类型为text/templates.html
+    content-type: text/html
+    #使用html5相关标签
+    mode: HTML5
+    #不使用模版缓存
+    cache: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/hbuy?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password:
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+
+#配置pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+redis:
+  database: 0
+  host: 127.0.0.1
+  port: 6379
+  timeout: 3000
+
+#配置mybatis
+mybatis:
+  #给实体对象取别名
+  type-aliases-package: cn.com.java.web.register.model
+  #mapper.xml的访问路径
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    #配置日志打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启懒加载
+    lazy-loading-enabled: true
+    #false 为按需加载
+    aggressive-lazy-loading: false
+    #开启MyBatis的二级缓存
+    cache-enabled: true
+
+eureka:
+  #客户端
+  client:
+    service-url:
+      #注册到注册中心的路径（功能模块可以同时注册到多个注册中心，至少要注册一个）
+      defaultZone: http://127.0.0.1:10010/eureka

@@ -1,0 +1,49 @@
+server:
+  port: 7072
+spring:
+  application:
+    #相同功能模块的所有的提供者必须一样,不要用下划线
+    name: web-provider
+  datasource:
+    url: jdbc:mysql://localhost:3306/hbuy?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password:
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+
+#配置pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+redis:
+  database: 0
+  host: 127.0.0.1
+  port: 6379
+  timeout: 3000
+
+#配置mybatis
+mybatis:
+  #给实体对象取别名
+  type-aliases-package: cn.com.java.model
+  #mapper.xml的访问路径
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    #配置日志打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启懒加载
+    lazy-loading-enabled: true
+    #false 为按需加载
+    aggressive-lazy-loading: false
+    #开启MyBatis的二级缓存
+    cache-enabled: true
+
+eureka:
+  #客户端
+  client:
+    service-url:
+      #注册到注册中心的路径（功能模块可以同时注册到多个注册中心，至少要注册一个）
+      defaultZone: http://127.0.0.1:10010/eureka
